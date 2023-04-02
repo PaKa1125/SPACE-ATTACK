@@ -73,7 +73,7 @@ function spawnEstrellas(){
     estrella.velocityY = 7
     estrella.scale = 3
     //ciclo de vida 
-    estrella.lifetime = 100
+    estrella.lifetime = 1000
     // ajustar la profundidad 
     estrella.depth = nave.depth
     nave.depth = nave.depth +1
@@ -89,7 +89,7 @@ function spawnbichos(){
         bicho.debug= false
         bicho.velocityY = 7
         bicho.scale = 3
-        bicho.lifetime = 500
+        bicho.lifetime = 1000
         bicho.velocityY = bicho.velocityY + score/100
         bichosGroup.add(bicho);
     }
