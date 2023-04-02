@@ -6,7 +6,7 @@ var PLAY = 1
 var gameState = PLAY
 var mukika
 var score = 0
-var tiro, tiroimg
+var tiro, tiroimg, tirosgroup
 var tirosgroup, bichosGroup //variables de grupos
 
 function preload(){
@@ -33,14 +33,14 @@ bichosGroup = new Group();// crear gruppo para bichos
 function draw() {
  background("black")
  
- if(gameState == PLAY){
+ if(gameState === PLAY){
      score = score + Math.round(getFrameRate() / 60) 
      tiros()
      movimiento()
      spawnEstrellas()
      spawnbichos()
      muertes()
- }else if (gameState == END){
+ }else if (gameState === END){
     score = 0
     estrella.velocityY = 0
     bicho.velocityY = 0 
@@ -107,16 +107,21 @@ function tiros(){
         tiro.lifetime  = 50
         tiro.setCollider("rectangle",0,0,10,10)
         tiro.debug= false
+        tirosgroup.add(tiro)
     }
 }
 
 function muertes (){
-    if (tirosgroup.isTouching(bichosGroup)){ //se asigna el isTouchin al grupo de tiros
-        bichosGroup.destroyEach();//como es un grupo se destrulle de esta manera
-        tirosgroup.destroyEach();//como es un grupo se destrulle de esta manera
-
+    for (var C; C<tirosgroup.length; C++){
+        if (bichosGroup.isTouching(tirosgroup)){
+            for (var i; i<bichosGroup; i++){
+                bichosGroup[i].destroy()
+                tirosgroup[C].destroy()
+            }
+        }
     }
-    if (bicho.isTouching(nave)){
+
+    if (bichosGroup.isTouching(nave)){
         gameState = END
     }
 }
