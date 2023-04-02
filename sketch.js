@@ -52,16 +52,16 @@ function draw() {
 
 function movimiento (){
     if(keyIsDown(RIGHT_ARROW)){
-        nave.x = nave.x + 10
+        nave.x = nave.x + 15
     }
     if(keyIsDown(LEFT_ARROW)){
-        nave.x = nave.x + -10
+        nave.x = nave.x + -15
     }
     if(keyIsDown(UP_ARROW)){
-        nave.y = nave.y + -10
+        nave.y = nave.y + -15
     }
     if(keyIsDown(DOWN_ARROW)){
-        nave.y = nave.y + 10
+        nave.y = nave.y + 15
     }
 }
 
@@ -81,7 +81,7 @@ function spawnEstrellas(){
 }
 
 function spawnbichos(){
-    if (score % 40 == 0){
+    if (frameCount % 1 == 0){
         bicho = createSprite(width/2,0,50,50)
         bicho.addAnimation("running",bicho_multicolor)
         bicho.x = Math.round(random(0,width))
